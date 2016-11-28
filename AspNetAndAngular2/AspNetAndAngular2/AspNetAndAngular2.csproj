@@ -71,7 +71,6 @@
     <Content Include="app\shared\star.component.html" />
     <Content Include="Default.aspx" />
     <Content Include="favicon.ico" />
-    <Content Include="index.html" />
     <Content Include="systemjs.config.js" />
     <Content Include="Web.config" />
   </ItemGroup>
