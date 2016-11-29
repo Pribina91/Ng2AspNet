@@ -8,21 +8,18 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = require('@angular/core');
-var platform_browser_1 = require('@angular/platform-browser');
-var app_component_1 = require('./app.component');
-var AppModule = (function () {
-    function AppModule() {
+var core_1 = require("@angular/core");
+var MultiSelectComponent = (function () {
+    function MultiSelectComponent() {
     }
-    AppModule = __decorate([
-        core_1.NgModule({
-            imports: [platform_browser_1.BrowserModule],
-            declarations: [app_component_1.AppComponent],
-            bootstrap: [app_component_1.AppComponent]
+    MultiSelectComponent = __decorate([
+        core_1.Component({
+            selector: 'multi-selector',
+            template: "{{title}}<p>\n  <select id=\"select\" multiple (change)=\"change($event.target.options)\">\n    <option *ngFor=\"let item of myOptions\" [value]=\"item.value\">  {{item.name}}\n    </option>\n  </select>\n  <p>{{selectedValues | json}}"
         }), 
         __metadata('design:paramtypes', [])
-    ], AppModule);
-    return AppModule;
+    ], MultiSelectComponent);
+    return MultiSelectComponent;
 }());
-exports.AppModule = AppModule;
-//# sourceMappingURL=app.module.js.map
+exports.MultiSelectComponent = MultiSelectComponent;
+//# sourceMappingURL=multiselect.component.js.map

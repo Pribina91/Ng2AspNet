@@ -1,0 +1,41 @@
+﻿<h2>
+    system component2
+</h2>
+
+<div>
+    <button type="button" class="btn"(click)="changeEditMode()">Toggle edit mode</button>
+    <hr/>
+    <form #systemForm >
+
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" [value]="obj.SystemName" name="name" id="name" [disabled]="!isEdit">
+
+        </div>
+        <div class="form-group">
+            <label for="description">Description</label>
+            <textarea id="description" name="description" type="text" [value]="obj.Description" [disabled]="!isEdit"></textarea>
+
+        </div>
+        <div class="form-group">
+            <label for="selectedOption">SelectedItem</label>
+            <select id="selectedOption" name="selectedOption" [value]="obj.SelectedPackageId" [disabled]="!isEdit">
+                <option value="-1">Chose</option>
+                <option value="1">jednotka</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label >Multiselector</label>
+            <select #multiSelect multiple (change)="change($event.target.options)" [disabled]="!isEdit">
+                <option *ngFor="let item of myOptions" [value]="item.value" [selected]="obj.SelectedMultiDescriptiors.indexOf(item.value) > -1">
+                    {{item.name}}
+                </option>
+            </select>
+            <p>
+                {{obj.SelectedMultiDescriptiors | json}}
+            </p>
+            <!--<multi-selector></multi-selector>-->
+        </div>
+        <button type="submit" class="btn" (click)="update()" [disabled]="!isEdit">Update</button>
+    </form>
+</div>
