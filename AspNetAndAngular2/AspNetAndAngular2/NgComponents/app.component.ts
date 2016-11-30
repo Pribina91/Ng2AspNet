@@ -3,12 +3,11 @@ import { Component } from "@angular/core";
 import {SystemService} from "./Services/system.service";
 
 @Component({
+    moduleId: module.id,
     selector: "pm-app",
-    template: `
-        <h1>Angular2: -componGetting Started23</h1>
-        <system-component></system-component>
-    `
+    templateUrl: "./app.component.html"
 })
+
 export class AppComponent {
    
 }

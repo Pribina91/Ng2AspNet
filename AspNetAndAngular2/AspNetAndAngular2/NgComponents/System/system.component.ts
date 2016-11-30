@@ -14,7 +14,7 @@ export class SystemComponent implements AfterViewInit {
     isEdit: boolean = false;
     @ViewChild('multiSelect') selectElRef: any;
     constructor(private systemService: SystemService) {
-        this.obj = new SystemClass("2", "init", "init");
+        this.obj =  new SystemClass("2", "init", "init");
     }
 
     myOptions = [
@@ -23,15 +23,24 @@ export class SystemComponent implements AfterViewInit {
         { value: 3, name: "three" },
         { value: 4, name: "four" }];
 
-    obj: SystemClass;
+    obj: SystemClass = new SystemClass("2", "init", "init");
     selectedValues = [-1];
 
     ngAfterViewInit() {
         this.getSystem("2");
     }
     
-    update(form: NgForm) {
-        this.systemService.updateSystem(this.obj);
+    update(name:string , description : string) {
+        this.obj.SystemName = name;
+        this.obj.Description = description;
+        //this.obj.SelectedPackageId = parseInt(selId);
+        
+        this.systemService.updateSystem(this.obj)
+            .subscribe(
+            (data: any) => { this.obj = data; },
+            error => console.log(error)
+            );;
+        return false;
     }
 
     changeEditMode() {
@@ -48,9 +57,9 @@ export class SystemComponent implements AfterViewInit {
         
     }
 
-    change(options: any) {
+    change(options:Element) {
         this.obj.SelectedMultiDescriptiors = Array.apply(null, options) // convert to real Array
-            .filter(option => option.selected)
-            .map(option => option.value);
+            .filter((option: HTMLOptionElement) => option.selected)
+            .map((option: HTMLOptionElement) => option.value);
     }
 }

@@ -1,0 +1,14 @@
+﻿
+<div style="border: 1px solid black">
+    <label>{{currentIndex}}</label>
+    <div id="tabHeaders">
+        <ul *ngFor="let tab of tabs; let i = index">
+            <li [disabled]="i>currentIndex">{{tab}}</li>
+        </ul>
+    </div>
+    <ng-content></ng-content>
+    <button class="btn" type="button" (click)="onCancel()" [disabled]="!isCancelPossible">Cancel</button>
+    <button class="btn" type="button" (click)="onNext()" [disabled]="!isNextPossible">Next</button>
+
+</div>
+

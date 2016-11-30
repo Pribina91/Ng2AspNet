@@ -92,6 +92,8 @@
     <Content Include="NgComponents\app.component.css" />
     <Content Include="Default.aspx" />
     <Content Include="favicon.ico" />
+    <Content Include="NgComponents\app.component.html" />
+    <Content Include="NgComponents\Components\workflowContainer.component.html" />
     <Content Include="NgComponents\System\system.component.html" />
     <Content Include="systemjs.config.js" />
     <Content Include="Web.config">
@@ -140,6 +142,8 @@
     <TypeScriptCompile Include="NgComponents\app.component.ts" />
     <TypeScriptCompile Include="NgComponents\app.module.ts" />
     <TypeScriptCompile Include="NgComponents\Components\multiselect.component.ts" />
+    <TypeScriptCompile Include="NgComponents\Components\workflow-item.container.ts" />
+    <TypeScriptCompile Include="NgComponents\Components\workflowContainer.component.ts" />
     <TypeScriptCompile Include="NgComponents\index.ts" />
     <TypeScriptCompile Include="NgComponents\main.ts" />
     <TypeScriptCompile Include="NgComponents\ModelClasses\SystemClass.ts" />

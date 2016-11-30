@@ -29,11 +29,22 @@ var SystemService = (function () {
             .catch(function (error) { return Rx_1.Observable.throw(error.json().error || 'Server error'); });
     };
     ;
-    //createSystem(newSystemCode: string, newName: string): Observable<any> {
-    //    return this.http.post("http://localhost:65237/api/Systems/", { name: newName, SystemCode: newSystemCode });
-    //}
+    SystemService.prototype.createSystem = function (systemClass) {
+        var headers = new http_1.Headers();
+        headers.append('Content-Type', 'application/json');
+        var objec = "{ &quot; Id & quot;: 2, &quot; SystemName & quot;: &quot; 2St& quot;,&quot; Description & quot;: &quot; 2Multiple line text, lorem ipsumlorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum& quot;,&quot; SelectedPackageId & quot;: 1,&quot; SelectedMultiDescriptiors & quot;: [1,]}";
+        return this.http.put("http://localhost:65237/api/Systems/1", JSON.stringify(systemClass), { headers: headers })
+            .map(function (res) { return res.json(); })
+            .catch(function (error) { return Rx_1.Observable.throw(error.json().error || 'Server error'); });
+        ;
+    };
     SystemService.prototype.updateSystem = function (systemClass) {
-        return this.http.put("http://localhost:65237/api/Systems", { JSON: .stringify(systemClass) });
+        var headers = new http_1.Headers();
+        headers.append('Content-Type', 'application/json');
+        return this.http.put("http://localhost:65237/api/Systems/" + systemClass.Id, JSON.stringify(systemClass), { headers: headers });
+    };
+    SystemService.prototype.deleteSystem = function (id) {
+        return this.http.delete("http://localhost:65237/api/Systems/" + id);
     };
     SystemService = __decorate([
         core_1.Injectable(), 

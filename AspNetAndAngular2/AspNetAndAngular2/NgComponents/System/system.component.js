@@ -19,16 +19,23 @@ var SystemComponent = (function () {
             { value: 1, name: "one" },
             { value: 2, name: "two" },
             { value: 3, name: "three" },
-            { value: 3, name: "three" },
             { value: 4, name: "four" }];
+        this.obj = new SystemClass_1.SystemClass("2", "init", "init");
         this.selectedValues = [-1];
         this.obj = new SystemClass_1.SystemClass("2", "init", "init");
     }
     SystemComponent.prototype.ngAfterViewInit = function () {
         this.getSystem("2");
     };
-    SystemComponent.prototype.update = function () {
-        this.systemService.updateSystem(this.obj);
+    SystemComponent.prototype.update = function (name, description) {
+        var _this = this;
+        this.obj.SystemName = name;
+        this.obj.Description = description;
+        //this.obj.SelectedPackageId = parseInt(selId);
+        this.systemService.updateSystem(this.obj)
+            .subscribe(function (data) { _this.obj = data; }, function (error) { return console.log(error); });
+        ;
+        return false;
     };
     SystemComponent.prototype.changeEditMode = function () {
         this.isEdit = !this.isEdit;

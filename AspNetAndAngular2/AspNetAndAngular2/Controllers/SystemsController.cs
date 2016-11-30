@@ -47,32 +47,33 @@ namespace AspNetAndAngular2.Controllers
         }
 
         [HttpPost]
-        //[ActionName("Create")]
         public void PostSystem([FromBody]AngularTestSystem model)
         {
-            if (MySystems.Any(s => s.Id != model.Id))
+            if (MySystems.Any(s => s.Id == model.Id))
             {
-                throw new ApplicationException("Already exists");
+                MySystems.Single(s => s.Id == model.Id)
+                    .Update(model);
             }
-
-
-            MySystems.Add(new AngularTestSystem()
+            else
             {
-                Id = MySystems.Max(s => s.Id + 1),
-                SystemName = model.SystemName,
-                Description = model.Description,
-                SelectedPackageId = model.SelectedPackageId,
-                SelectedMultiDescriptiors = new List<int>(model.SelectedMultiDescriptiors),
-            });
+                MySystems.Add(new AngularTestSystem()
+                {
+                    Id = MySystems.Max(s => s.Id + 1),
+                    SystemName = model.SystemName,
+                    Description = model.Description,
+                    SelectedPackageId = model.SelectedPackageId,
+                    SelectedMultiDescriptiors = new List<int>(model.SelectedMultiDescriptiors),
+                });
+            }
 
             ControllerContext.Request.CreateResponse(HttpStatusCode.Created);
         }
 
         [HttpPut]
         //[ActionName("Update")]
-        public void PutSystem([FromBody]AngularTestSystem model)
+        public void PutSystem(int id, [FromBody]AngularTestSystem model)
         {
-            if (MySystems.All(s => s.Id != model.Id))
+            if (MySystems.All(s => s.Id != id))
             {
                 throw new ApplicationException("Does not exist");
             }
@@ -82,19 +83,19 @@ namespace AspNetAndAngular2.Controllers
             ControllerContext.Request.CreateResponse(HttpStatusCode.OK);
         }
 
-        [HttpDelete]
-        //[ActionName("Delete")]
-        public void DeleteSystem(int id)
-        {
-            if (MySystems.All(s => s.Id != id))
-            {
-                throw new ApplicationException("Does not exist");
-            }
+        //[HttpDelete]
+        ////[ActionName("Delete")]
+        //public void DeleteSystem(int id)
+        //{
+        //    if (MySystems.All(s => s.Id != id))
+        //    {
+        //        throw new ApplicationException("Does not exist");
+        //    }
 
-            MySystems.RemoveAll(s => s.Id == id);
+        //    MySystems.RemoveAll(s => s.Id == id);
 
-            ControllerContext.Request.CreateResponse(HttpStatusCode.OK);
-        }
+        //    ControllerContext.Request.CreateResponse(HttpStatusCode.OK);
+        //}
     }
 
     public class AngularTestSystem
